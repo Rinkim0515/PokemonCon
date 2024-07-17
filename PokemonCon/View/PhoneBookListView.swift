@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class PBLV: UIView { // PhoneBookListView
+class PhoneBookListView: UIView { // PhoneBookListView
 
   let tableView = UITableView()
   

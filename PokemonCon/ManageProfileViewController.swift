@@ -10,16 +10,15 @@ import SnapKit
 import CoreData
 import Kingfisher
 
-class PhoneBookViewController: UIViewController {
+class ManageProfileViewController: UIViewController {
   
   static var container: NSPersistentContainer!
+
   
-  lazy var apiURL = ""
-  
-  var imgUrl: String = ""
+  private var tempImgUrl: String = ""
   
   
-  let imageLabel = {
+  private let imageLabel = {
     let img = UIImageView()
     img.backgroundColor = .white
     img.layer.cornerRadius = 100
@@ -28,17 +27,18 @@ class PhoneBookViewController: UIViewController {
     img.layer.borderColor = UIColor.black.cgColor
     return img
   }()
-  lazy var randomBtn = {
+  
+  private lazy var randomBtn = {
     let btn = UIButton()
     btn.setTitle("랜덤 이미지 생성", for: .normal)
     btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
     btn.titleLabel?.textColor = .gray
     btn.setTitleColor(.gray, for: .normal)
-    btn.addTarget(self, action: #selector(changeImage), for: .touchDown)
-    
+    btn.addTarget(self, action: #selector(makeRandomImage), for: .touchDown)
     return  btn
   }()
-  let nameTextLabel = {
+  
+  private let nameTextView = {
     let lb = UITextView()
     lb.layer.borderColor = UIColor.lightGray.cgColor
     lb.layer.borderWidth = 1
@@ -47,7 +47,8 @@ class PhoneBookViewController: UIViewController {
     lb.font = UIFont.systemFont(ofSize: 16)
     return lb
   }()
-  let numTextLabel = {
+  
+  private let numTextView = {
     let lb = UITextView()
     lb.layer.borderColor = UIColor.lightGray.cgColor
     lb.layer.borderWidth = 1
@@ -60,12 +61,12 @@ class PhoneBookViewController: UIViewController {
   override func viewDidLoad() {
     view.backgroundColor = .white
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    PhoneBookViewController.container = appDelegate.persistentContainer
+    ManageProfileViewController.container = appDelegate.persistentContainer
     configureUI()
   }
   
   
-  func configureUI(){
+  private func configureUI(){
     
     let applyBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(apply))
     self.navigationItem.rightBarButtonItem = applyBtn
@@ -74,8 +75,8 @@ class PhoneBookViewController: UIViewController {
     [
       imageLabel,
       randomBtn,
-      nameTextLabel,
-      numTextLabel
+      nameTextView,
+      numTextView
     ].forEach{view.addSubview($0)}
     
     
@@ -91,25 +92,25 @@ class PhoneBookViewController: UIViewController {
       $0.width.equalTo(100)
       $0.height.equalTo(20)
     }
-    nameTextLabel.snp.makeConstraints{
+    nameTextView.snp.makeConstraints{
       $0.top.equalTo(randomBtn.snp.bottom).offset(15)
       $0.centerX.equalToSuperview()
       $0.height.equalTo(40)
       $0.width.equalTo(340)
       
     }
-    numTextLabel.snp.makeConstraints{
-      $0.top.equalTo(nameTextLabel.snp.bottom).offset(10)
+    numTextView.snp.makeConstraints{
+      $0.top.equalTo(nameTextView.snp.bottom).offset(10)
       $0.centerX.equalToSuperview()
       $0.height.equalTo(40)
       $0.width.equalTo(340)
     }
   }
   
-  private func makeRandomImage(){ // use kingfisher
-    imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
+  @objc private func makeRandomImage(){ // use kingfisher
+    tempImgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
   
-    imageLabel.kf.setImage(with: URL(string: imgUrl))
+    imageLabel.kf.setImage(with: URL(string: tempImgUrl))
     
   }
   
@@ -181,19 +182,16 @@ class PhoneBookViewController: UIViewController {
   
   
   
-  @objc func changeImage(){
-    
-    makeRandomImage()
-  }
+
   
   func createData(name:String, phoneNumber:String, image: String){
-    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: PhoneBookViewController.container.viewContext) else { return }
-    let newPhoneBook = NSManagedObject(entity: entity, insertInto: PhoneBookViewController.container.viewContext)
+    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: ManageProfileViewController.container.viewContext) else { return }
+    let newPhoneBook = NSManagedObject(entity: entity, insertInto: ManageProfileViewController.container.viewContext)
     newPhoneBook.setValue(name, forKey: "name")
     newPhoneBook.setValue(phoneNumber, forKey: "phoneNumber")
     newPhoneBook.setValue(image, forKey: "imgURL")
     do {
-      try PhoneBookViewController.container.viewContext.save()
+      try ManageProfileViewController.container.viewContext.save()
       print("Success")
     } catch {
       print("Failure:\(error)")
@@ -207,22 +205,21 @@ class PhoneBookViewController: UIViewController {
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     
     do {
-      let result = try? PhoneBookViewController.container.viewContext.fetch(fetchRequest)
+      let result = try? ManageProfileViewController.container.viewContext.fetch(fetchRequest)
       
       for data in result! as [NSManagedObject] {
-        PhoneBookViewController.container.viewContext.delete(data)
+        ManageProfileViewController.container.viewContext.delete(data)
         print(data)
       }
-      try? PhoneBookViewController.container.viewContext.save()
+      try? ManageProfileViewController.container.viewContext.save()
       
     }
   }
   
-  // 정리를 코어데이터 이미지 url이 저장이 되어있는지
-  // tableViewCell에서 대입해줘야하고
+
   func readAllData() {
          do {
-             let phoneBooks = try PhoneBookViewController.container.viewContext.fetch(PhoneBook.fetchRequest())
+             let phoneBooks = try ManageProfileViewController.container.viewContext.fetch(PhoneBook.fetchRequest())
              
              for phoneBook in phoneBooks as [NSManagedObject] {
                  if let name = phoneBook.value(forKey: "name") as? String,
@@ -240,13 +237,13 @@ class PhoneBookViewController: UIViewController {
   
   
   @objc func apply(){
-    let name = nameTextLabel.text ?? "null"
-    let phoneNum = numTextLabel.text ?? "null"
-    let image = imgUrl
+    let name = nameTextView.text ?? "null"
+    let phoneNum = numTextView.text ?? "null"
+    let image = tempImgUrl
     readAllData()
     
     createData(name: name, phoneNumber: phoneNum,image: image)
-    imgUrl = ""
+    tempImgUrl = ""
     self.navigationController?.popViewController(animated: false)
     
     print("적용완료")

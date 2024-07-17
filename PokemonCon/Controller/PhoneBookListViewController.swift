@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 import CoreData
 
-class PBLVC: UIViewController { //PhoneBookListViewController
+class PhoneBookListViewController: UIViewController { //PhoneBookListViewController
   private var container: NSPersistentContainer!
-  private let phoneBookListView = PBLV()
+  private let phoneBookListView = PhoneBookListView()
   var phoneBooks: [PhoneBook] = []
   
   
@@ -48,7 +48,7 @@ class PBLVC: UIViewController { //PhoneBookListViewController
     
     phoneBookListView.tableView.delegate = self
     phoneBookListView.tableView.dataSource = self
-    phoneBookListView.tableView.register(TBCC.self, forCellReuseIdentifier: "ListCell")
+    phoneBookListView.tableView.register(PhoneBookListCell.self, forCellReuseIdentifier: "ListCell")
     view.addSubview(phoneBookListView)
     phoneBookListView.snp.makeConstraints{
       $0.edges.equalToSuperview()
@@ -60,7 +60,7 @@ class PBLVC: UIViewController { //PhoneBookListViewController
   
   
   @objc func addFriends() {
-    let phoneBookVC = PhoneBookViewController()
+    let phoneBookVC = ManageProfileViewController()
     self.navigationController?.pushViewController(phoneBookVC, animated: false)
   }
   
@@ -89,7 +89,7 @@ class PBLVC: UIViewController { //PhoneBookListViewController
 
 
 
-extension PBLVC: UITableViewDelegate, UITableViewDataSource {
+extension PhoneBookListViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     print(phoneBooks.count)
@@ -99,7 +99,7 @@ extension PBLVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     print("ss")
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? TBCC else { return UITableViewCell() }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? PhoneBookListCell else { return UITableViewCell() }
     
     let book = phoneBooks[indexPath.row]
     cell.setData(phoneBook: book)
