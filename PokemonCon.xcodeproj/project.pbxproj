@@ -9,21 +9,36 @@
 /* Begin PBXBuildFile section */
 		9F4CB8C32C450CB000D4847F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8C22C450CB000D4847F /* AppDelegate.swift */; };
 		9F4CB8C52C450CB000D4847F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8C42C450CB000D4847F /* SceneDelegate.swift */; };
-		9F4CB8C72C450CB000D4847F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8C62C450CB000D4847F /* ViewController.swift */; };
+		9F4CB8C72C450CB000D4847F /* PBLVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8C62C450CB000D4847F /* PBLVC.swift */; };
 		9F4CB8CA2C450CB000D4847F /* PokemonCon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8C82C450CB000D4847F /* PokemonCon.xcdatamodeld */; };
 		9F4CB8CC2C450CB100D4847F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CB8CB2C450CB100D4847F /* Assets.xcassets */; };
 		9F4CB8CF2C450CB100D4847F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 9F4CB8CE2C450CB100D4847F /* Base */; };
+		9F4CB8D82C450D1B00D4847F /* PhoneBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8D62C450D1B00D4847F /* PhoneBook+CoreDataClass.swift */; };
+		9F4CB8D92C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8D72C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift */; };
+		9F4CB8DB2C450DC100D4847F /* TBCC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8DA2C450DC100D4847F /* TBCC.swift */; };
+		9F4CB8DE2C451D9500D4847F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4CB8DD2C451D9500D4847F /* SnapKit */; };
+		9F4CB8E02C4530ED00D4847F /* PhoneBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8DF2C4530ED00D4847F /* PhoneBookViewController.swift */; };
+		9F4CB8E22C4558D700D4847F /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8E12C4558D700D4847F /* PokemonModel.swift */; };
+		9F4CB8E52C473DF500D4847F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4CB8E42C473DF500D4847F /* Kingfisher */; };
+		9F4CB8E72C473FE300D4847F /* PBLV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8E62C473FE300D4847F /* PBLV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F4CB8BF2C450CB000D4847F /* PokemonCon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonCon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4CB8C22C450CB000D4847F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F4CB8C42C450CB000D4847F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F4CB8C62C450CB000D4847F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F4CB8C62C450CB000D4847F /* PBLVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBLVC.swift; sourceTree = "<group>"; };
 		9F4CB8C92C450CB000D4847F /* PokemonCon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonCon.xcdatamodel; sourceTree = "<group>"; };
 		9F4CB8CB2C450CB100D4847F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F4CB8CE2C450CB100D4847F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F4CB8D02C450CB100D4847F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F4CB8D62C450D1B00D4847F /* PhoneBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneBook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9F4CB8D72C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhoneBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9F4CB8DA2C450DC100D4847F /* TBCC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBCC.swift; sourceTree = "<group>"; };
+		9F4CB8DF2C4530ED00D4847F /* PhoneBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhoneBookViewController.swift; path = ../PhoneBookViewController.swift; sourceTree = "<group>"; };
+		9F4CB8E12C4558D700D4847F /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		9F4CB8E62C473FE300D4847F /* PBLV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBLV.swift; sourceTree = "<group>"; };
+		9F4CB8EB2C47659700D4847F /* PokemonCon v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PokemonCon v2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4CB8E52C473DF500D4847F /* Kingfisher in Frameworks */,
+				9F4CB8DE2C451D9500D4847F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +75,43 @@
 			children = (
 				9F4CB8C22C450CB000D4847F /* AppDelegate.swift */,
 				9F4CB8C42C450CB000D4847F /* SceneDelegate.swift */,
-				9F4CB8C62C450CB000D4847F /* ViewController.swift */,
+				9F4CB8EA2C47403E00D4847F /* Model */,
 				9F4CB8CB2C450CB100D4847F /* Assets.xcassets */,
+				9F4CB8E82C47402600D4847F /* View */,
+				9F4CB8E92C47403400D4847F /* Controller */,
 				9F4CB8CD2C450CB100D4847F /* LaunchScreen.storyboard */,
 				9F4CB8D02C450CB100D4847F /* Info.plist */,
 				9F4CB8C82C450CB000D4847F /* PokemonCon.xcdatamodeld */,
 			);
 			path = PokemonCon;
+			sourceTree = "<group>";
+		};
+		9F4CB8E82C47402600D4847F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CB8E62C473FE300D4847F /* PBLV.swift */,
+				9F4CB8DA2C450DC100D4847F /* TBCC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9F4CB8E92C47403400D4847F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CB8DF2C4530ED00D4847F /* PhoneBookViewController.swift */,
+				9F4CB8C62C450CB000D4847F /* PBLVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9F4CB8EA2C47403E00D4847F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F4CB8D62C450D1B00D4847F /* PhoneBook+CoreDataClass.swift */,
+				9F4CB8D72C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift */,
+				9F4CB8E12C4558D700D4847F /* PokemonModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +130,10 @@
 			dependencies = (
 			);
 			name = PokemonCon;
+			packageProductDependencies = (
+				9F4CB8DD2C451D9500D4847F /* SnapKit */,
+				9F4CB8E42C473DF500D4847F /* Kingfisher */,
+			);
 			productName = PokemonCon;
 			productReference = 9F4CB8BF2C450CB000D4847F /* PokemonCon.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +162,10 @@
 				Base,
 			);
 			mainGroup = 9F4CB8B62C450CB000D4847F;
+			packageReferences = (
+				9F4CB8DC2C451D9500D4847F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9F4CB8E32C473DF500D4847F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 9F4CB8C02C450CB000D4847F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +193,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4CB8CA2C450CB000D4847F /* PokemonCon.xcdatamodeld in Sources */,
-				9F4CB8C72C450CB000D4847F /* ViewController.swift in Sources */,
+				9F4CB8C72C450CB000D4847F /* PBLVC.swift in Sources */,
 				9F4CB8C32C450CB000D4847F /* AppDelegate.swift in Sources */,
+				9F4CB8E72C473FE300D4847F /* PBLV.swift in Sources */,
+				9F4CB8D82C450D1B00D4847F /* PhoneBook+CoreDataClass.swift in Sources */,
+				9F4CB8E02C4530ED00D4847F /* PhoneBookViewController.swift in Sources */,
+				9F4CB8D92C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift in Sources */,
+				9F4CB8DB2C450DC100D4847F /* TBCC.swift in Sources */,
+				9F4CB8E22C4558D700D4847F /* PokemonModel.swift in Sources */,
 				9F4CB8C52C450CB000D4847F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,10 +415,43 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		9F4CB8DC2C451D9500D4847F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		9F4CB8E32C473DF500D4847F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F4CB8DD2C451D9500D4847F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F4CB8DC2C451D9500D4847F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		9F4CB8E42C473DF500D4847F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F4CB8E32C473DF500D4847F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
 		9F4CB8C82C450CB000D4847F /* PokemonCon.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9F4CB8EB2C47659700D4847F /* PokemonCon v2.xcdatamodel */,
 				9F4CB8C92C450CB000D4847F /* PokemonCon.xcdatamodel */,
 			);
 			currentVersion = 9F4CB8C92C450CB000D4847F /* PokemonCon.xcdatamodel */;
