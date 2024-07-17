@@ -21,6 +21,7 @@
 		9F4CB8E22C4558D700D4847F /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8E12C4558D700D4847F /* PokemonModel.swift */; };
 		9F4CB8E52C473DF500D4847F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4CB8E42C473DF500D4847F /* Kingfisher */; };
 		9F4CB8E72C473FE300D4847F /* PhoneBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB8E62C473FE300D4847F /* PhoneBookListView.swift */; };
+		9F4CB90D2C481FCC00D4847F /* ManageProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4CB90C2C481FCC00D4847F /* ManageProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9F4CB8E12C4558D700D4847F /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		9F4CB8E62C473FE300D4847F /* PhoneBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBookListView.swift; sourceTree = "<group>"; };
 		9F4CB8EB2C47659700D4847F /* PokemonCon v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PokemonCon v2.xcdatamodel"; sourceTree = "<group>"; };
+		9F4CB90C2C481FCC00D4847F /* ManageProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				9F4CB8E62C473FE300D4847F /* PhoneBookListView.swift */,
 				9F4CB8DA2C450DC100D4847F /* PhoneBookListCell.swift */,
+				9F4CB90C2C481FCC00D4847F /* ManageProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				9F4CB8E72C473FE300D4847F /* PhoneBookListView.swift in Sources */,
 				9F4CB8D82C450D1B00D4847F /* PhoneBook+CoreDataClass.swift in Sources */,
 				9F4CB8E02C4530ED00D4847F /* ManageProfileViewController.swift in Sources */,
+				9F4CB90D2C481FCC00D4847F /* ManageProfileView.swift in Sources */,
 				9F4CB8D92C450D1B00D4847F /* PhoneBook+CoreDataProperties.swift in Sources */,
 				9F4CB8DB2C450DC100D4847F /* PhoneBookListCell.swift in Sources */,
 				9F4CB8E22C4558D700D4847F /* PokemonModel.swift in Sources */,

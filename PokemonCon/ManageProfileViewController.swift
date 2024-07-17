@@ -13,50 +13,10 @@ import Kingfisher
 class ManageProfileViewController: UIViewController {
   
   static var container: NSPersistentContainer!
-
-  
   private var tempImgUrl: String = ""
+  let manageProfileView = ManageProfileView()
   
   
-  private let imageLabel = {
-    let img = UIImageView()
-    img.backgroundColor = .white
-    img.layer.cornerRadius = 100
-    img.clipsToBounds = true
-    img.layer.borderWidth = 1
-    img.layer.borderColor = UIColor.black.cgColor
-    return img
-  }()
-  
-  private lazy var randomBtn = {
-    let btn = UIButton()
-    btn.setTitle("랜덤 이미지 생성", for: .normal)
-    btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-    btn.titleLabel?.textColor = .gray
-    btn.setTitleColor(.gray, for: .normal)
-    btn.addTarget(self, action: #selector(makeRandomImage), for: .touchDown)
-    return  btn
-  }()
-  
-  private let nameTextView = {
-    let lb = UITextView()
-    lb.layer.borderColor = UIColor.lightGray.cgColor
-    lb.layer.borderWidth = 1
-    lb.layer.cornerRadius = 10
-    lb.textContainer.maximumNumberOfLines = 1
-    lb.font = UIFont.systemFont(ofSize: 16)
-    return lb
-  }()
-  
-  private let numTextView = {
-    let lb = UITextView()
-    lb.layer.borderColor = UIColor.lightGray.cgColor
-    lb.layer.borderWidth = 1
-    lb.layer.cornerRadius = 10
-    lb.textContainer.maximumNumberOfLines = 1
-    lb.font = UIFont.systemFont(ofSize: 16)
-    return lb
-  }()
   
   override func viewDidLoad() {
     view.backgroundColor = .white
@@ -72,45 +32,12 @@ class ManageProfileViewController: UIViewController {
     self.navigationItem.rightBarButtonItem = applyBtn
     
     self.title = " 연락처 추가 "
-    [
-      imageLabel,
-      randomBtn,
-      nameTextView,
-      numTextView
-    ].forEach{view.addSubview($0)}
-    
-    
-    imageLabel.snp.makeConstraints{
-      $0.top.equalToSuperview().offset(120)
-      $0.centerX.equalToSuperview()
-      $0.width.equalTo(200)
-      $0.height.equalTo(200)
-    }
-    randomBtn.snp.makeConstraints{
-      $0.centerX.equalToSuperview()
-      $0.top.equalTo(imageLabel.snp.bottom).offset(15)
-      $0.width.equalTo(100)
-      $0.height.equalTo(20)
-    }
-    nameTextView.snp.makeConstraints{
-      $0.top.equalTo(randomBtn.snp.bottom).offset(15)
-      $0.centerX.equalToSuperview()
-      $0.height.equalTo(40)
-      $0.width.equalTo(340)
-      
-    }
-    numTextView.snp.makeConstraints{
-      $0.top.equalTo(nameTextView.snp.bottom).offset(10)
-      $0.centerX.equalToSuperview()
-      $0.height.equalTo(40)
-      $0.width.equalTo(340)
-    }
   }
   
-  @objc private func makeRandomImage(){ // use kingfisher
+  @objc func makeRandomImage(){ // use kingfisher
     tempImgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
   
-    imageLabel.kf.setImage(with: URL(string: tempImgUrl))
+    manageProfileView.imageLabel.kf.setImage(with: URL(string: tempImgUrl))
     
   }
   
