@@ -23,7 +23,7 @@ class PBLV: UIView { // PhoneBookListView
   }
   
   private func configureUI() {
-    tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    
     tableView.rowHeight = 80
     addSubview(tableView)
     

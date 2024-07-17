@@ -48,7 +48,7 @@ class PBLVC: UIViewController { //PhoneBookListViewController
     
     phoneBookListView.tableView.delegate = self
     phoneBookListView.tableView.dataSource = self
-    phoneBookListView.tableView.register(TBCC.self, forCellReuseIdentifier: TBCC.id0)
+    phoneBookListView.tableView.register(TBCC.self, forCellReuseIdentifier: "ListCell")
     view.addSubview(phoneBookListView)
     phoneBookListView.snp.makeConstraints{
       $0.edges.equalToSuperview()
@@ -71,13 +71,13 @@ class PBLVC: UIViewController { //PhoneBookListViewController
       let appDelegate = UIApplication.shared.delegate as! AppDelegate
       let phoneBooksResult = try appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
       
-      self.phoneBooks.removeAll()
       
-//      for phoneBook in phoneBooksResult as [PhoneBook] {
-//        if phoneBook.name?.isEmpty == false && phoneBook.phoneNumber?.isEmpty == false{
-//          self.phoneBooks.append(phoneBook)
-//        }
-//      }
+      
+      for phoneBook in phoneBooksResult as [PhoneBook] {
+        if phoneBook.name?.isEmpty == false && phoneBook.phoneNumber?.isEmpty == false{
+          self.phoneBooks.append(phoneBook)
+        }
+      }
       
       self.phoneBookListView.tableView.reloadData()
       
@@ -92,11 +92,14 @@ class PBLVC: UIViewController { //PhoneBookListViewController
 extension PBLVC: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    phoneBooks.count
+    print(phoneBooks.count)
+    return phoneBooks.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: TBCC.id0, for: indexPath) as? TBCC else { return UITableViewCell() }
+    
+    print("ss")
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? TBCC else { return UITableViewCell() }
     
     let book = phoneBooks[indexPath.row]
     cell.setData(phoneBook: book)

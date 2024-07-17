@@ -15,12 +15,12 @@ class TBCC: UITableViewCell {
     
     let imgView = UIImageView()
     
-    imgView.image = UIImage(named: "icon")
+    
     imgView.backgroundColor = .white
     imgView.layer.cornerRadius = 30
     imgView.layer.borderColor = UIColor.black.cgColor
     imgView.layer.borderWidth = 1
-    
+    imgView.clipsToBounds = true
     return imgView
     
   }()
@@ -52,7 +52,7 @@ class TBCC: UITableViewCell {
     configureUI()
     
   }
-  
+  // delegate datasource의연결 X / count 0이라 그릴필요없다
   
   func setData(phoneBook: PhoneBook){
     self.nameLabel.text = phoneBook.name

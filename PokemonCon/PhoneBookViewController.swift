@@ -23,6 +23,7 @@ class PhoneBookViewController: UIViewController {
     let img = UIImageView()
     img.backgroundColor = .white
     img.layer.cornerRadius = 100
+    img.clipsToBounds = true
     img.layer.borderWidth = 1
     img.layer.borderColor = UIColor.black.cgColor
     return img
@@ -107,8 +108,8 @@ class PhoneBookViewController: UIViewController {
   
   private func makeRandomImage(){ // use kingfisher
     imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
-    let url = URL(string: imgUrl)
-    imageLabel.kf.setImage(with: url)
+  
+    imageLabel.kf.setImage(with: URL(string: imgUrl))
     
   }
   
@@ -122,7 +123,7 @@ class PhoneBookViewController: UIViewController {
 //        print("데이터 로드 실패")
 //        completion(nil)
 //        return
-//      }
+//      } request ->
 //      // http status code 성공 범위.
 //      let successRange = 200..<300
 //      if let response = response as? HTTPURLResponse, successRange.contains(response.statusCode) {
@@ -134,14 +135,19 @@ class PhoneBookViewController: UIViewController {
 //          completion(nil)
 //          return
 //        }
-//        completion(decodedData)
+//        completion(decodedData) -> response
 //      } else {
 //        print("응답 오류")
 //        completion(nil)
 //      }
 //    }.resume()
 //  }
-//  
+  // 네트워킹의 4단계
+  //1 번 url 생성이
+  //2번 urlsession
+  //3번 url datatask
+  // 4번 .resume() -> 네트워킹 의 과정
+//
 //  
 //  
 //  private func fetchPokeImg() {
@@ -222,7 +228,7 @@ class PhoneBookViewController: UIViewController {
                  if let name = phoneBook.value(forKey: "name") as? String,
                     let phoneNumber = phoneBook.value(forKey: "phoneNumber") as? String,
                     let imgurl = phoneBook.value(forKey: "imgURL"){
-                     print("name: \(name), phoneNumber: \(phoneNumber),\(imgurl)")
+                     print("name: \(name), phoneNumber: \(phoneNumber)\nimgurl:\(imgurl)")
                  }
              }
              
@@ -236,10 +242,12 @@ class PhoneBookViewController: UIViewController {
   @objc func apply(){
     let name = nameTextLabel.text ?? "null"
     let phoneNum = numTextLabel.text ?? "null"
+    let image = imgUrl
     readAllData()
     
-    createData(name: name, phoneNumber: phoneNum,image: imgUrl)
+    createData(name: name, phoneNumber: phoneNum,image: image)
     imgUrl = ""
+    self.navigationController?.popViewController(animated: false)
     
     print("적용완료")
   }
