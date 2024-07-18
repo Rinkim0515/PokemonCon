@@ -27,12 +27,22 @@ class ManageProfileViewController: UIViewController {
   
   
   private func configureUI(){
-    
+    deleteData(name: "Ddd")
     let applyBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(apply))
     self.navigationItem.rightBarButtonItem = applyBtn
     
     self.title = " 연락처 추가 "
+    view.addSubview(manageProfileView)
+    
+    manageProfileView.randomBtn.addTarget(self, action: #selector(makeRandomImage), for: .touchDown)
+    
+    manageProfileView.snp.makeConstraints{
+      $0.edges.equalToSuperview()
+    }
+    
   }
+  
+  
   
   @objc func makeRandomImage(){ // use kingfisher
     tempImgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(Int.random(in: 0...1000)).png"
@@ -130,7 +140,7 @@ class ManageProfileViewController: UIViewController {
   func deleteData(name: String) {
     let fetchRequest = PhoneBook.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-    
+    // name == %@ -> compare  검색조건형식
     do {
       let result = try? ManageProfileViewController.container.viewContext.fetch(fetchRequest)
       
