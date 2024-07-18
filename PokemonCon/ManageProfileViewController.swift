@@ -164,8 +164,8 @@ class ManageProfileViewController: UIViewController {
   
   
   @objc func apply(){
-    let name = nameTextView.text ?? "null"
-    let phoneNum = numTextView.text ?? "null"
+    let name = manageProfileView.nameTextView.text ?? "null"
+    let phoneNum = manageProfileView.numTextView.text ?? "null"
     let image = tempImgUrl
     readAllData()
     

@@ -38,7 +38,7 @@ class ManageProfileView: UIView {
     return lb
   }()
   
-  private let numTextView = {
+  let numTextView = {
     let lb = UITextView()
     lb.layer.borderColor = UIColor.lightGray.cgColor
     lb.layer.borderWidth = 1
