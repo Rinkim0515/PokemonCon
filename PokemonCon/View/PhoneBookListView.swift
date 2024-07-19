@@ -15,18 +15,16 @@ class PhoneBookListView: UIView { // PhoneBookListView
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    configureUI()
+    configureTableViewUI()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func configureUI() {
-    
+  private func configureTableViewUI() {
     tableView.rowHeight = 80
     addSubview(tableView)
-    
     tableView.snp.makeConstraints{
       $0.edges.equalTo(self.safeAreaLayoutGuide)
       

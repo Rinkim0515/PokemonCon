@@ -16,6 +16,7 @@ class ManageProfileView: UIView {
     img.clipsToBounds = true
     img.layer.borderWidth = 1
     img.layer.borderColor = UIColor.black.cgColor
+    img.image = UIImage(named: "DefaultImage")
     return img
   }()
   

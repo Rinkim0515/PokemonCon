@@ -18,9 +18,10 @@ class PhoneBookListCell: UITableViewCell {
     iv.layer.borderColor = UIColor.black.cgColor
     iv.layer.borderWidth = 1
     iv.clipsToBounds = true
+    iv.image = UIImage(named: "DefaultImage")
     return iv
-    
   }()
+  
   private let nameLabel: UILabel = {
     let lb = UILabel()
     lb.text = "name"
@@ -39,7 +40,7 @@ class PhoneBookListCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    configureUI()
+    configureCellUI()
     
   }
   
@@ -53,12 +54,16 @@ class PhoneBookListCell: UITableViewCell {
   func setData(phoneBook: PhoneBook){
     self.nameLabel.text = phoneBook.name
     self.phoneNumberLabel.text = phoneBook.phoneNumber
-    self.img.kf.setImage(with: URL(string: phoneBook.imgURL ?? "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" ))
+    if phoneBook.imgURL == "" {
+      self.img.image = UIImage(named: "DefaultImage")
+    }
+    else{ self.img.kf.setImage(with: URL(string: phoneBook.imgURL ?? "")) }
+     
     
   }
   
   
-  private func configureUI() {
+  private func configureCellUI() {
     
     [ img,
       nameLabel,

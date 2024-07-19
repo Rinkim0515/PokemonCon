@@ -118,7 +118,18 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
  
  왜 이함수를 써야되는지애 대한 깊은 고찰이 필요함
  그냥 쓰지말것 쓰라니까 쓰지말것 시간이 걸리더라도
- 
+ private 으로 다 생성하며 소스파일사이에서 가져올때 풀어서 쓰고 연결에대한 고찰을 해볼것
+ 메서드 프로퍼티 private으 고정
+ 풀어야 한다면 이걸쓰는가 왜풀어야하지 메서드참조해
+ .닷칭  그런 습관을 유지하면서
+ 캡슐화 같은거임 타인이 내코드를 상속할수 있기때문에 final class
+ 키워드 내가 의도한대로 동작하지 않을수 있기 때문에
+
+ ocp
+
+ 첫화면 부터 하나씩
+  
+
  
  
  */
