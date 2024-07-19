@@ -10,10 +10,10 @@ import SnapKit
 import CoreData
 
 class PhoneBookListViewController: UIViewController { //PhoneBookListViewController
-  private var container: NSPersistentContainer!
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private let phoneBookListView = PhoneBookListView()
   var phoneBooks: [PhoneBook] = []
-  
+  //타입 프로퍼티  폰북에와서 접근하는 컨테이너가
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -69,22 +69,41 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
     
     do{
       
-      let appDelegate = UIApplication.shared.delegate as! AppDelegate
+      // 다시 돌아봐야할 부분
       let phoneBooksResult = try appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
       
       phoneBooks.removeAll() //코어데이터에
       
       for phoneBook in phoneBooksResult as [PhoneBook] {
         
-          self.phoneBooks.append(phoneBook)
+        self.phoneBooks.append(phoneBook)
         
-        
+        //appDelegate.persistentContainer ->앱전반적으로 쓰는 컨테이너 이기에 
       }
       
       self.phoneBookListView.tableView.reloadData()
       
     } catch {
       print("데이터 읽기실패")
+    }
+  }
+  // 매니저프로파일에서 컨테이너  crud  내부에서 // 객체를 생성해서 그것에 접근을하되 읽어올수 있도록
+  // co
+  
+  
+  func deleteData(name: String) {
+    let fetchRequest = PhoneBook.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+    // name == %@ -> compare  검색조건형식
+    do {
+      let result = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+      
+      for data in result! as [NSManagedObject] {
+        appDelegate.persistentContainer.viewContext.delete(data)
+        print(data)
+      }
+      try? appDelegate.persistentContainer.viewContext.save()
+      
     }
   }
 }
@@ -122,6 +141,18 @@ extension PhoneBookListViewController: UITableViewDelegate, UITableViewDataSourc
     cell.setData(phoneBook: book)
     
     return cell
+  }
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    if editingStyle == .delete {
+      
+      deleteData(name: phoneBooks[indexPath.row].name ?? "")
+      phoneBooks.remove(at: indexPath.row)
+      tableView.deleteRows(at: [indexPath], with: .fade
+)
+    } else if editingStyle == .insert{
+      
+    }
   }
   
 }
