@@ -10,10 +10,10 @@ import SnapKit
 import CoreData
 
 class PhoneBookListViewController: UIViewController { //PhoneBookListViewController
-  let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  
   private let phoneBookListView = PhoneBookListView()
-  var phoneBooks: [PhoneBook] = []
-  let phoneBookVC = ManageProfileViewController()
+  private var phoneBooks: [PhoneBook] = []
+  private let phoneBookVC = ManageProfileViewController()
   //타입 프로퍼티  폰북에와서 접근하는 컨테이너가
   
   override func viewDidLoad() {
@@ -71,7 +71,7 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
     do{
       
       // 다시 돌아봐야할 부분
-      let phoneBooksResult = try appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
+      let phoneBooksResult = try ManageProfileViewController.appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
       
       phoneBooks.removeAll() //코어데이터에
       
@@ -97,13 +97,13 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     // name == %@ -> compare  검색조건형식
     do {
-      let result = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+      let result = try? ManageProfileViewController.appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
       
       for data in result! as [NSManagedObject] {
-        appDelegate.persistentContainer.viewContext.delete(data)
+        ManageProfileViewController.appDelegate.persistentContainer.viewContext.delete(data)
         print(data)
       }
-      try? appDelegate.persistentContainer.viewContext.save()
+      try? ManageProfileViewController.appDelegate.persistentContainer.viewContext.save()
       
     }
   }

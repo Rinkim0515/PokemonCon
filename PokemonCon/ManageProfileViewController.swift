@@ -12,11 +12,12 @@ import Kingfisher
 
 class ManageProfileViewController: UIViewController {
   
-  let appDelegate = UIApplication.shared.delegate as! AppDelegate
-  private var tempImgUrl: String = ""
+  static var appDelegate = UIApplication.shared.delegate as! AppDelegate
+  
   let manageProfileView = ManageProfileView()
+  private let applyBtn = UIBarButtonItem(title: "적용", style: .plain, target: ManageProfileViewController.self, action: #selector(apply))
   
-  
+  private var tempImgUrl: String = ""
   
   override func viewDidLoad() {
     view.backgroundColor = .white
@@ -27,10 +28,9 @@ class ManageProfileViewController: UIViewController {
   
   
   private func configureUI(){
-    deleteData(name: "Ddd")
-    let applyBtn = UIBarButtonItem(title: "적용", style: .plain, target: self, action: #selector(apply))
-    self.navigationItem.rightBarButtonItem = applyBtn
     
+    
+    self.navigationItem.rightBarButtonItem = applyBtn
     self.title = " 연락처 추가 "
     view.addSubview(manageProfileView)
     
@@ -122,13 +122,13 @@ class ManageProfileViewController: UIViewController {
 
   
   func createData(name:String, phoneNumber:String, image: String){
-    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: appDelegate.persistentContainer.viewContext) else { return }
-    let newPhoneBook = NSManagedObject(entity: entity, insertInto: appDelegate.persistentContainer.viewContext)
+    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: ManageProfileViewController.appDelegate.persistentContainer.viewContext) else { return }
+    let newPhoneBook = NSManagedObject(entity: entity, insertInto: ManageProfileViewController.appDelegate.persistentContainer.viewContext)
     newPhoneBook.setValue(name, forKey: "name")
     newPhoneBook.setValue(phoneNumber, forKey: "phoneNumber")
     newPhoneBook.setValue(image, forKey: "imgURL")
     do {
-      try appDelegate.persistentContainer.viewContext.save()
+      try ManageProfileViewController.appDelegate.persistentContainer.viewContext.save()
       print("Success")
     } catch {
       print("Failure:\(error)")
@@ -142,13 +142,13 @@ class ManageProfileViewController: UIViewController {
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     // name == %@ -> compare  검색조건형식
     do {
-      let result = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
+      let result = try? ManageProfileViewController.appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
       
       for data in result! as [NSManagedObject] {
-        appDelegate.persistentContainer.viewContext.delete(data)
+        ManageProfileViewController.appDelegate.persistentContainer.viewContext.delete(data)
         print(data)
       }
-      try? appDelegate.persistentContainer.viewContext.save()
+      try? ManageProfileViewController.appDelegate.persistentContainer.viewContext.save()
       
     }
   }
@@ -156,7 +156,7 @@ class ManageProfileViewController: UIViewController {
 
   func readAllData() {
          do {
-           let phoneBooks = try appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
+           let phoneBooks = try ManageProfileViewController.appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
              
              for phoneBook in phoneBooks as [NSManagedObject] {
                  if let name = phoneBook.value(forKey: "name") as? String,
