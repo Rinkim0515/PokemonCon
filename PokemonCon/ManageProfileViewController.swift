@@ -12,7 +12,7 @@ import Kingfisher
 
 class ManageProfileViewController: UIViewController {
   
-  static var container: NSPersistentContainer!
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private var tempImgUrl: String = ""
   let manageProfileView = ManageProfileView()
   
@@ -20,8 +20,8 @@ class ManageProfileViewController: UIViewController {
   
   override func viewDidLoad() {
     view.backgroundColor = .white
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    ManageProfileViewController.container = appDelegate.persistentContainer
+    
+    
     configureUI()
   }
   
@@ -122,13 +122,13 @@ class ManageProfileViewController: UIViewController {
 
   
   func createData(name:String, phoneNumber:String, image: String){
-    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: ManageProfileViewController.container.viewContext) else { return }
-    let newPhoneBook = NSManagedObject(entity: entity, insertInto: ManageProfileViewController.container.viewContext)
+    guard let entity = NSEntityDescription.entity(forEntityName: "PhoneBook", in: appDelegate.persistentContainer.viewContext) else { return }
+    let newPhoneBook = NSManagedObject(entity: entity, insertInto: appDelegate.persistentContainer.viewContext)
     newPhoneBook.setValue(name, forKey: "name")
     newPhoneBook.setValue(phoneNumber, forKey: "phoneNumber")
     newPhoneBook.setValue(image, forKey: "imgURL")
     do {
-      try ManageProfileViewController.container.viewContext.save()
+      try appDelegate.persistentContainer.viewContext.save()
       print("Success")
     } catch {
       print("Failure:\(error)")
@@ -142,13 +142,13 @@ class ManageProfileViewController: UIViewController {
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     // name == %@ -> compare  검색조건형식
     do {
-      let result = try? ManageProfileViewController.container.viewContext.fetch(fetchRequest)
+      let result = try? appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
       
       for data in result! as [NSManagedObject] {
-        ManageProfileViewController.container.viewContext.delete(data)
+        appDelegate.persistentContainer.viewContext.delete(data)
         print(data)
       }
-      try? ManageProfileViewController.container.viewContext.save()
+      try? appDelegate.persistentContainer.viewContext.save()
       
     }
   }
@@ -156,7 +156,7 @@ class ManageProfileViewController: UIViewController {
 
   func readAllData() {
          do {
-             let phoneBooks = try ManageProfileViewController.container.viewContext.fetch(PhoneBook.fetchRequest())
+           let phoneBooks = try appDelegate.persistentContainer.viewContext.fetch(PhoneBook.fetchRequest())
              
              for phoneBook in phoneBooks as [NSManagedObject] {
                  if let name = phoneBook.value(forKey: "name") as? String,
@@ -174,8 +174,8 @@ class ManageProfileViewController: UIViewController {
   
   
   @objc func apply(){
-    let name = manageProfileView.nameTextView.text ?? "null"
-    let phoneNum = manageProfileView.numTextView.text ?? "null"
+    let name = manageProfileView.nameTextView.text!
+    let phoneNum = manageProfileView.numTextView.text!
     let image = tempImgUrl
     readAllData()
     
