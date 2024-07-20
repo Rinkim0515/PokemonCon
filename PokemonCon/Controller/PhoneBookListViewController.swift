@@ -13,6 +13,7 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
   let appDelegate = UIApplication.shared.delegate as! AppDelegate
   private let phoneBookListView = PhoneBookListView()
   var phoneBooks: [PhoneBook] = []
+  let phoneBookVC = ManageProfileViewController()
   //타입 프로퍼티  폰북에와서 접근하는 컨테이너가
   
   override func viewDidLoad() {
@@ -60,7 +61,7 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
   
   
   @objc func addFriends() {
-    let phoneBookVC = ManageProfileViewController()
+    
     self.navigationController?.pushViewController(phoneBookVC, animated: false)
   }
   
@@ -137,6 +138,12 @@ class PhoneBookListViewController: UIViewController { //PhoneBookListViewControl
 
 
 extension PhoneBookListViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    self.navigationController?.pushViewController(phoneBookVC, animated: false)
+    tableView.deselectRow(at: indexPath, animated: false)
+    
+  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     print(phoneBooks.count)
